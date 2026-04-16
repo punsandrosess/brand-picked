@@ -1,310 +1,219 @@
 # Sow What · Brand Discovery Tool
 
-**AI-powered brand strategy for cybersecurity founders**
+> **Your brand starts with what you believe.**
 
-Built by [Kelsey LaBelle](https://kelseylabelle.com) (aka [punsandrosess](https://github.com/punsandrosess)) · *the gardener of cybersecurity marketing*
+A brand discovery tool for cybersecurity founders. Twenty-one questions across six sections, designed to surface the convictions, beliefs, and strategic instincts that make your company yours, before a single campaign runs.
 
----
+## Overview
 
-## What It Does
+Sow What is a thoughtfully designed single-page application that guides cybersecurity founders through a structured brand discovery process. The tool generates five key brand outputs using AI: Brand Archetype, Personality Profile, Positioning, Visual Direction Brief, and Taglines & Voice Lines.
 
-Sow What is a comprehensive brand discovery tool designed specifically for cybersecurity founders. Through 21 strategic questions across 6 sections, it helps technical founders articulate their authentic brand positioning without the typical corporate marketing fluff.
+### Key Features
 
-**The tool generates 5 strategic brand outputs:**
-1. **Brand Archetype** (with reference links and examples)
-2. **Brand Personality Profile** (voice, character, energy)
-3. **Positioning Framework** (April Dunford's 5-component system)
-4. **Visual Direction Brief** (emotional targets and design metaphors)
-5. **Taglines + Voice Lines** (3-5 strategic directions)
+- **21 Strategic Questions** across 6 sections covering customer goals, competitive positioning, beliefs, and brand personality
+- **Tab Navigation** with clickable horizontal tabs showing your progress across all sections
+- **File Upload Support** for existing brand materials, competitor research, and voice examples
+- **AI Integration** with Anthropic Claude, OpenAI GPT, and Perplexity for brand output generation
+- **Dark/Light Theme Toggle** with full accessibility support and theme-aware color variables
+- **Export Options** - Download as Markdown, TXT, or printer-friendly PDF formats
+- **Session Persistence** - Answers automatically saved in browser
+- **Clear All Functionality** with confirmation for starting over (preserves theme preference)
 
-## Key Features
+## Technical Implementation
 
-### 🎯 **Cybersecurity-Focused Questions**
-- Customer goals (explicit vs implicit)
-- Best/worst customer stories
-- Conviction under pressure moments
-- Market pattern recognition
-- Anti-patterns and villains
+### Architecture
+- **Single-page application** - No external dependencies, fully self-contained
+- **Vanilla JavaScript** - Clean, performant, framework-free implementation
+- **CSS Custom Properties** - Full theming system with dark/light mode support using `body.light` class toggle
+- **Web APIs** - Direct integration with AI providers via fetch API
+- **Local Storage** - Client-side session persistence
 
-### 🤖 **Multi-AI Provider Support**
-- **Anthropic Claude** (recommended for brand work)
-- **OpenAI GPT-4** (widely available)
-- **Perplexity** (Llama 3.1 Sonar with web access)
-- **Custom API endpoints** (any OpenAI-compatible API)
-- **No API key required** (export structured prompts)
+### Design System
+- **Typography**: Playfair Display (headlines), Source Serif 4 (body), Space Mono (accents)
+- **Color Palette**: Forest green system with botanical accents and terracotta highlights
+- **Component Library**: Consistent buttons, cards, modals, and form elements
+- **Responsive Layout**: Mobile-first design with flexible breakpoints
 
-### 💰 **Advanced Cost Optimization**
-- Real-time cost estimation with provider comparison
-- Token-efficient prompts (70% reduction from verbose versions)
-- **Off-peak scheduling** (30-50% savings with timezone support)
-- **Multiple generation modes**: Batch, Sequential, Scheduled
-- **Rate limit protection** with automatic delays
+### AI Integration
+- **Anthropic Claude** (Recommended) - Claude Sonnet 4 (`claude-sonnet-4-6`) for brand strategy
+- **OpenAI GPT** - GPT-4o for alternative generation approach
+- **Perplexity** - Llama 3.1 Sonar for research-enhanced, web-connected outputs
+- **Rate Limiting** - Built-in 3-second delays and batch processing options
+- **Error Handling** - Comprehensive API error management with provider-specific messages
+- **Key Validation** - Provider-aware validation (sk-ant- for Anthropic, sk- for OpenAI, pplx- for Perplexity)
 
-### 📚 **Brand Archetype Reference System**
-- **12 complete archetypes** with descriptions and examples
-- **Auto-detection** from AI outputs with smart keyword matching
-- **Direct links** to [iconicfox.com.au](https://iconicfox.com.au/brand-archetypes/) 
-- **Zero API credits** used (hardcoded reference data)
-- **Professional examples**: Nike (Hero), Apple (Magician), Google (Sage)
+## Usage
 
-### 🎨 **GitHub Technical Aesthetic**
-- Clean, grid-based design system with corner bracket styling
-- **punsandrosess** branding with kelseylabelle.com integration
-- **Full light/dark mode** support with perfect contrast
-- **Dynamic UI elements** that adapt to selected AI provider
+### Getting Started
+1. Open the application in a modern web browser
+2. Toggle between light/dark modes using the theme button
+3. Begin the brand discovery process with "Let's dig in"
 
-### 📤 **Comprehensive Export Options**
-- **.md/.txt** formats with complete answer appendix
-- **PDF export** for both results and prompts (via print dialog)
-- **Structured AI prompts** for use in any tool
-- **Professional formatting** optimized for sharing
+### The Discovery Process
 
-### 🔧 **User Experience Enhancements**
-- **File upload & deletion** (× buttons, multiple formats supported)
-- **Auto-save** with session persistence across browser restarts
-- **Smart error handling** with actionable guidance
-- **Dynamic form elements** that update based on selections
+#### Section 1: Customer & Goals
+- Explicit vs implicit customer goals
+- Better vs different value proposition
+- Target customer identification
+- Wrong customer avoidance
 
-## How It Works
+#### Section 2: Competition & Market
+- Competitive landscape mapping
+- Status quo alternatives
+- Market position clarity
+- Unique value identification
 
-### Path 1: AI Generation
-1. **Answer 21 questions** across 6 strategic sections
-2. **Upload supporting files** (optional: PDFs, docs, images, any format)
-3. **Choose your AI provider** from 4 supported options
-4. **Select generation mode** (Batch, Sequential, or Off-peak Scheduled)
-5. **Review and refine** each output (2 refinements per output max)
-6. **Export final results** in your preferred format (.md, .txt, or PDF)
+#### Section 3: Beliefs & Convictions
+- Core belief system
+- Industry patterns and insights
+- Mission-critical convictions
+- Worldview articulation
 
-### Path 2: Prompt Export
-1. **Answer the questions** (same strategic framework)
-2. **Export structured prompt** as markdown or PDF
-3. **Use with any AI tool** (Claude.ai, ChatGPT, Perplexity, etc.)
-4. **Get the same quality outputs** without API setup
+#### Section 4: Voice & Personality
+- Brand personality traits
+- Communication style
+- Voice and tone guidelines
+- High school student explanation test
 
-## The Question Framework
+#### Section 5: Metaphors & Imagery
+- Place metaphors for brand feeling
+- Founder energy and approach
+- Visual direction guidance
+- Atmospheric brand qualities
 
-### Section 01: Customer Goals
-- What customers think they want vs what they actually optimize for
-- How you're different (not just better)
-- The headline when you succeed
-- Wrong-fit customers to avoid
+#### Section 6: Lines & Messaging
+- Tagline and messaging uploads
+- Brand encounter scenarios
+- Product moment descriptions
+- Voice line development
 
-### Section 02: Your Believers  
-- Best customer story and why it worked
-- Worst prospect story and the misalignment
-- Upload zone for customer testimonials/reviews
+### Export Options
 
-### Section 03: Belief System + Origin Story
-- Conviction under pressure moments
-- Industry anti-patterns you won't tolerate
-- Turning point customer stories
-- Core beliefs and worldview
-- Upload zone for blog posts/manifestos
+#### AI Generation Path
+1. **API Key Setup** - Enter your AI provider API key (provider-specific validation)
+2. **Generation Mode** - Choose batch (slower, safer), sequential (one at a time), or off-peak (scheduled for lower cost)
+3. **Output Review** - Approve or refine each of 5 brand outputs
+4. **Final Export** - Download completed brand strategy as MD, TXT, or PDF
 
-### Section 04: The Problem You Name
-- Patterns you keep seeing that others miss
-- Cautionary tales from the market
-- What disappears if you don't exist
-- Upload zone for competitive analysis
+#### Manual Export Path
+1. **Markdown Prompt** - Export formatted AI prompt for any tool
+2. **PDF Export** - Download questions and answers for review (printer-friendly layout)
+3. **Session Data** - All answers preserved in browser storage
 
-### Section 05: Personification
-- Your brand as a high school student
-- Place metaphor for brand atmosphere  
-- Why you started vs why you stay
-- Competitor you could beat and how
-- Upload zone for current taglines/mood boards
+## Brand Outputs Generated
 
-### Section 06: Brand Feeling
-- Two critical customer encounter scenes
-- Upload zone for company culture docs
+### 1. Brand Archetype
+Primary archetype identification from the standard 12, with supporting evidence from responses.
 
-## AI Provider Comparison
+### 2. Brand Personality Profile
+- **Voice and Tone** - How the brand speaks and what it avoids
+- **Character Sketch** - Brand's unique worldview and positioning angle  
+- **Tone and Energy** - Specific descriptors earned from responses
 
-| Provider | Model | Strengths | Cost (Est.) | API Key Format |
-|----------|-------|-----------|-------------|----------------|
-| **Anthropic** | Claude 3.5 Sonnet | Best for brand work, nuanced understanding | $0.50-0.75 | sk-ant-api03-... |
-| **OpenAI** | GPT-4 | Widely available, consistent quality | $0.30-0.50 | sk-... |
-| **Perplexity** | Llama 3.1 Sonar | Web-connected, latest information | $0.20-0.40 | pplx-... |
-| **Custom** | Your choice | Self-hosted models, full control | Varies | Any format |
+### 3. Positioning (April Dunford Framework)
+- **Who This Is For** - Specific target customer definition
+- **The Promise** - Value proposition through "so what" test
+- **The Voice** - Communication approach and style
+- **Competitive Alternatives** - Real alternatives customers consider
+- **Market Gap** - White space opportunity identification
 
-## Technical Specifications
+### 4. Visual Direction Brief
+- **Emotional Target** - Specific scenes and feelings to evoke
+- **Should Feel Like** - Atmospheric direction from place metaphors
+- **Suggested Metaphors** - Visual and verbal anchors for design
 
-### Requirements
-- Modern web browser with JavaScript enabled
-- No server setup required (runs entirely client-side)
-- Optional: AI API key for generation path
-
-### Cost Optimization Features
-- **Token-efficient prompts** (~70% reduction from verbose versions)
-- **Real-time cost estimation** with provider comparison
-- **Off-peak scheduling** with intelligent timezone detection
-- **Rate limit protection** with automatic retry logic
-- **Multiple generation modes** for different budget needs
-
-### Data Privacy & Security
-- **Client-side only** - no data sent to external servers except chosen AI provider
-- **sessionStorage** for API keys (clears on tab close)
-- **localStorage** for session persistence and auto-save
-- **File processing** happens entirely in browser
-- **No tracking** or analytics of any kind
-
-### Smart Error Handling
-```
-Network connection failed. Check CORS settings and internet connection.
-Rate limit exceeded. Try sequential mode or wait a few minutes.
-Invalid API key. Please check your key and try again.
-```
-
-## Brand Archetype Reference System
-
-The tool includes a complete hardcoded reference system with:
-
-- **12 Standard Archetypes**: Innocent, Sage, Explorer, Outlaw, Magician, Hero, Lover, Jester, Everyman, Caregiver, Ruler, Creator
-- **Rich Descriptions**: Core traits and characteristics with emotional resonance
-- **Brand Examples**: Nike (Hero), Apple (Magician), Google (Sage), IKEA (Everyman), etc.
-- **Direct Links**: Specific archetype pages on iconicfox.com.au with detailed explanations
-- **Auto-Detection**: Smart keyword matching and explicit mention recognition
-- **Zero Credits**: No API calls required for reference data
-- **Educational Value**: Helps founders understand their archetype in context
+### 5. Taglines & Voice Lines
+- **Multiple Directions** - 3-5 distinct strategic approaches
+- **Complete Line Sets** - Hero, belief, kicker lines for each direction
+- **Strategic Reasoning** - Why each direction works for the brand
 
 ## File Structure
 
 ```
-sow-what.html                 # Complete single-file application (420KB)
-├── CSS (embedded)            # GitHub technical design system
-├── JavaScript (embedded)    # Full application logic with multi-provider support
-├── Fonts (Google Fonts)     # Playfair Display, Source Serif 4, Space Mono
-└── No dependencies          # Self-contained, no external JS libraries
+sow-what-v5.html
+├── CSS Styles
+│   ├── Theme System (CSS Custom Properties, body.light toggle)
+│   ├── Tab Navigation (sticky, clickable section tabs)
+│   ├── Component Styles (Buttons, Cards, Modals)
+│   ├── Layout System (Responsive Grid)
+│   └── Dark/Light Mode Overrides (body:not(.light) selectors)
+├── HTML Structure  
+│   ├── Header (Punsandrosess branding, Theme Toggle, Clear All)
+│   ├── Tab Navigation Bar (dynamic, section-aware)
+│   ├── Welcome Screen
+│   ├── Question Sections (Dynamically Rendered)
+│   ├── API Configuration Screen (Radio buttons for provider selection)
+│   ├── Generation & Review Screens
+│   ├── Summary & Export Screen
+│   └── Footer
+└── JavaScript Application
+    ├── Data Layer (Sections, Questions, State)
+    ├── Tab Navigation (render, update, click handling)
+    ├── UI Rendering (Screen Management, Form Handling)
+    ├── AI Integration (Anthropic, OpenAI, Perplexity)
+    ├── Export System (MD, TXT, Printer-friendly PDF)
+    ├── Theme Management
+    └── Local Storage Persistence
 ```
 
-## Usage Examples
+## Development Notes
 
-### For Cybersecurity Founders
-```bash
-# Download the HTML file
-# Open in any modern browser
-# Choose your preferred AI provider
-# Answer 21 questions about your startup
-# Generate brand outputs with cost optimization
-# Export results as PDF, markdown, or text
-```
+### Recent Updates
+- **API Models**: Updated to `claude-sonnet-4-6` (Anthropic) and `gpt-4o` (OpenAI)
+- **Tab Navigation**: Added clickable horizontal tab bar for section navigation with completion indicators
+- **Dark Mode**: Fixed theme system to use consistent `body.light` / `body:not(.light)` selectors; replaced broken `[data-theme="dark"]` rules; added proper dark-mode color variables for `--botanical-faint`, `--botanical-pale`, and `--terracotta-pale`
+- **Radio Buttons**: Added `accent-color` styling for visibility in both themes
+- **AI Provider Selection**: Replaced duplicate dropdown+radio UI with clean radio button group
+- **Key Validation**: Now provider-aware (validates correct prefix per provider)
+- **Clear All**: Fixed to preserve theme preference and reset all state properties correctly
+- **PDF Export**: Printer-friendly margins (0.6in/0.7in), tighter spacing, `@media print` rules
+- **Branding**: Header updated to Punsandrosess with GitHub link; terracotta accent in dark mode
+- **Bug Fixes**: Removed duplicate `callAI()` and `generateWithKey()` function definitions; restored OpenAI provider support; cleaned up dead custom provider code
 
-### For Brand Consultants
-```bash
-# Use with clients who need technical credibility
-# Export prompts for use in client's preferred AI tools
-# Reference system provides educational value without billable hours
-# Professional GitHub aesthetic builds trust with technical founders
-```
+### Browser Compatibility
+- **Modern Browsers**: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+
+- **ES6 Features**: Uses modern JavaScript (async/await, template literals, destructuring)
+- **CSS Features**: Custom properties, CSS Grid, Flexbox
+- **Web APIs**: Fetch API, Local Storage, Blob/URL APIs
 
-### For Marketing Teams
-```bash
-# Cost-effective alternative to brand consultancy ($0.20-$0.75 per session)
-# Technical founder-friendly language and examples  
-# Structured outputs ready for design/copy teams
-# Off-peak scheduling reduces costs by 30-50%
-# Multiple export formats for different team workflows
-```
+### Security Considerations
+- **API Keys**: Processed client-side only, never stored or transmitted to third parties
+- **CORS Headers**: Handles cross-origin API requests with proper headers
+- **Input Validation**: Sanitizes user input in exports and displays
+- **XSS Prevention**: Escapes HTML content in dynamic rendering
 
-## Cost Estimates (Updated)
+## Philosophy & Approach
 
-### AI Generation Path
-- **Anthropic Claude**: $0.50-$0.75 per full session (recommended quality)
-- **OpenAI GPT-4**: $0.30-$0.50 per full session (good balance)
-- **Perplexity**: $0.20-$0.40 per full session (most economical)
-- **Off-peak savings**: 30-50% cost reduction across all providers
-- **Token efficiency**: 70% reduction from verbose prompts
-- **Sequential mode**: Review each output before continuing (cheapest option)
+### Design Principles
+- **Conviction-Driven**: Focus on beliefs and authentic positioning over tactics
+- **Founder-Centric**: Built specifically for cybersecurity startup founders
+- **Trust-Based**: No manipulation or FUD-based marketing approaches
+- **Thoughtful Questioning**: Each question designed to surface genuine insights
+- **AI-Augmented**: Technology enhances human insight rather than replacing it
 
-### No-API Path
-- **Completely free** - export structured prompts as markdown or PDF
-- **Use with any AI tool** you already have access to
-- **Same strategic framework** and output quality
-- **Professional formatting** for easy copy/paste
+### Brand Voice Guidelines
+- **Warm & Editorial**: Conversational but authoritative tone
+- **Direct Communication**: Say the quiet part out loud
+- **No Corporate Jargon**: Plain language over business-speak
+- **Evidence-Based**: Quote actual responses as supporting evidence
+- **Starting Point Focus**: Directionally true, not finished - meant for reaction and refinement
 
-## Recent Updates (v1.3)
+## Credits & Attribution
 
-### 🔌 **Enhanced AI Provider Support**
-- Added **Perplexity API** with Llama 3.1 Sonar model
-- **Dynamic API key labels** that update based on selected provider
-- **Smart placeholder text** showing correct key format (sk-ant-, pplx-, etc.)
-- **Provider-specific help links** to get API keys
+**Built by [Punsandrosess](https://github.com/punsandrosess)**
 
-### 🎨 **UI/UX Improvements**
-- **Fixed dark mode visibility** issues with better contrast
-- **File deletion capability** with × buttons next to uploaded files
-- **PDF export functionality** working on final results page
-- **Better error messages** with actionable guidance
+### Methodology Influences
+- **April Dunford** - Positioning framework and competitive alternative thinking
+- **Don Jeter** - Brand personality and character-driven B2B approaches  
+- **Roei Deutsch** - Believer marketing and conviction-based messaging
+- **The Jolt Effect** - Decision-making psychology and customer indecision patterns
 
-### 📄 **Export Enhancements**
-- **PDF export for prompts** on the API key selection screen
-- **Improved PDF formatting** with better typography and spacing
-- **Professional layouts** optimized for printing and sharing
-- **Popup handling** with graceful fallbacks
-
-### 🧠 **Smart Features**
-- **Brand archetype auto-detection** with links to educational resources
-- **Cost estimation** that adapts to selected AI provider
-- **Intelligent error handling** for common API issues
-- **Session persistence** across browser restarts
-
-## Philosophy
-
-> *"You can't outsource conviction."*  
-> — Kelsey LaBelle
-
-**Sow What** is built on the belief that authentic brands come from founders who know what they stand for, not from generic positioning exercises. The tool helps technical founders:
-
-- **Find their authentic voice** rather than adopting corporate speak
-- **Identify their true differentiators** beyond feature comparisons  
-- **Connect with believers** rather than trying to convince skeptics
-- **Build conviction-driven brands** that attract the right customers
-- **Access professional brand strategy** without expensive consultancy fees
-
-The questions are designed to surface the founder's genuine beliefs, experiences, and worldview. The AI then helps articulate these insights into professional brand language that maintains the founder's authentic voice.
-
-## Getting Started
-
-### Quick Start (5 minutes)
-1. **Download** `sow-what.html` (420KB single file)
-2. **Open** in any modern web browser
-3. **Choose your path**: 
-   - **AI Generation**: Select provider, enter API key, generate outputs
-   - **Prompt Export**: Skip API, export structured prompts for any AI tool
-4. **Answer 21 questions** about your cybersecurity startup (auto-saves progress)
-5. **Generate or export** your brand strategy
-6. **Use the outputs** as foundation for marketing, design, and positioning
-
-### For Best Results
-- **Be specific** in your answers - generic responses yield generic outputs
-- **Upload relevant files** (testimonials, blog posts, competitive analysis)
-- **Use off-peak scheduling** for significant cost savings
-- **Try different AI providers** to find your preferred output style
-- **Refine outputs** using the built-in refinement system (2 per output)
-
-## Contributing
-
-This is a single-file application designed for simplicity and portability. For suggestions or improvements:
-
-1. **Open issues** for feature requests or bugs
-2. **Fork and modify** the single HTML file
-3. **Test thoroughly** across different browsers and AI providers
-4. **Submit pull requests** with clear descriptions
-
-## License
-
-MIT License - feel free to use, modify, and distribute.
-
-## Credits
-
-**Built by**: [Kelsey LaBelle](https://kelseylabelle.com) (punsandrosess)  
-**Archetype Reference**: [Iconic Fox](https://iconicfox.com.au/brand-archetypes/)  
-**Positioning Framework**: April Dunford methodology  
-**Brand Philosophy**: Roei Deutsch (believer marketing) and Don Jeter (B2B brand building)  
-**AI Providers**: Anthropic, OpenAI, Perplexity  
+### Technical Implementation
+- **Single-file Architecture** for simplicity and portability
+- **No External Dependencies** for reliability and speed
+- **Progressive Enhancement** for accessibility and performance
+- **Thoughtful UX** prioritizing founder experience over technical complexity
 
 ---
 
-**The soil is prepared. The planting is still on you.**
-
-*Ready to discover your authentic cybersecurity brand? Download Sow What and start digging.*
+*Sow What prepares the soil. The planting is still on you.*
