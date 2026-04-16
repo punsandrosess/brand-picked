@@ -215,5 +215,5 @@ sow-what-v5.html
 - **Thoughtful UX** prioritizing founder experience over technical complexity
 
 ---
-
+ 
 *Sow What prepares the soil. The planting is still on you.*
