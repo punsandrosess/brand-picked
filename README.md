@@ -16,6 +16,7 @@ Sow What is a thoughtfully designed single-page application that guides cybersec
 - **AI Integration** with Anthropic Claude, OpenAI GPT, and Perplexity for brand output generation
 - **Dark/Light Theme Toggle** with full accessibility support and theme-aware color variables
 - **Export Options** - Download as Markdown, TXT, or printer-friendly PDF formats
+- **Prompt Pack Export** - Founders without an API key can export a sequenced Prompt Pack (setup message plus five sequential prompts) that replicates the API-key experience in any AI assistant
 - **Session Persistence** - Answers automatically saved in browser
 - **Clear All Functionality** with confirmation for starting over (preserves theme preference)
 
@@ -95,10 +96,15 @@ Sow What is a thoughtfully designed single-page application that guides cybersec
 3. **Output Review** - Approve or refine each of 5 brand outputs
 4. **Final Export** - Download completed brand strategy as MD, TXT, or PDF
 
-#### Manual Export Path
-1. **Markdown Prompt** - Export formatted AI prompt for any tool
+#### Manual Export Path (no API key required)
+1. **Prompt Pack (Markdown)** - Export a structured Prompt Pack formatted for any AI assistant (Claude, ChatGPT, Gemini, Copilot). The pack contains a setup message, five sequential prompts (one per output), and a refinement template. Paste them in order to replicate the API-key experience in a regular chat window.
 2. **PDF Export** - Download questions and answers for review (printer-friendly layout)
 3. **Session Data** - All answers preserved in browser storage
+
+##### What's inside the Prompt Pack
+- **Setup message** - Loads the founder's answers and voice rules as the opening context for the assistant
+- **Prompts 1 through 5** - Brand Archetype, Personality Profile, Positioning, Visual Direction Brief, and Taglines & Voice Lines. Each prompt mirrors the exact instructions the API version sends, so outputs match in quality and structure
+- **Refinement template** - A copy-paste template for requesting a second pass on any output, borrowing the two-round cap from the API path
 
 ## Brand Outputs Generated
 
@@ -159,6 +165,7 @@ sow-what-v5.html
 ## Development Notes
 
 ### Recent Updates
+- **Prompt Pack Export**: Rebuilt `buildMarkdownPrompt()` so the markdown export is no longer a flat dump of answers. It now produces a structured Prompt Pack with a setup message, five sequential prompts mirroring the API prompts, and a refinement template. Founders without an API key get a near-identical experience to the API-key path when they paste the pack into any AI assistant.
 - **API Models**: Updated to `claude-sonnet-4-6` (Anthropic) and `gpt-4o` (OpenAI)
 - **Tab Navigation**: Added clickable horizontal tab bar for section navigation with completion indicators
 - **Dark Mode**: Fixed theme system to use consistent `body.light` / `body:not(.light)` selectors; replaced broken `[data-theme="dark"]` rules; added proper dark-mode color variables for `--botanical-faint`, `--botanical-pale`, and `--terracotta-pale`
