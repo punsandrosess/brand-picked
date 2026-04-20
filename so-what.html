@@ -3456,55 +3456,196 @@ function reviewOutput(idx) {
 // EXPORT
 // ============================================================
 function buildMarkdownPrompt() {
-  // This is the "export as a prompt" version, formatted as a high-context AI prompt
+  // This export mirrors the API key experience. Instead of a single dump of answers,
+  // it produces a Setup message followed by five sequential prompts (one per output),
+  // plus a refinement template. Each prompt is the same one the API version sends.
   let md = '';
-  md += '# Brand Discovery Input · Sow What by Kelsey LaBelle\n\n';
-  md += '_This document was exported from Sow What, a brand discovery tool for cybersecurity founders. Paste it into Claude, ChatGPT, or any AI tool to generate the five brand outputs below._\n\n';
+
+  // ------------------------------------------------------------
+  // COVER
+  // ------------------------------------------------------------
+  md += '# Sow What · Brand Discovery Prompt Pack\n\n';
+  md += '_Built by Kelsey LaBelle. The gardener of cybersecurity marketing. kelseylabelle.com_\n\n';
+  md += 'This pack gives any AI assistant (Claude, ChatGPT, Gemini, Copilot) everything it needs to run your brand discovery the same way Sow What runs it with an API key. You will paste one Setup message to load your context, then paste five prompts in order. You will get back the same five outputs: archetype, personality profile, positioning, visual direction, and taglines.\n\n';
+  md += 'This is not a copy of your answers. It is a working prompt pack. Treat it like a recipe.\n\n';
   md += '---\n\n';
-  md += '## Instructions for the AI\n\n';
-  md += 'You are acting as a brand strategist and thought partner for a cybersecurity founder. The founder has answered 21 questions across six sections. Using their answers, generate five outputs in sequence:\n\n';
-  md += '1. **Brand Archetype**. Name the primary archetype from the standard 12 (Innocent, Sage, Explorer, Outlaw, Magician, Hero, Lover, Jester, Everyman, Caregiver, Ruler, Creator). If answers split, name a primary and co-primary. One paragraph of explanation, quoting their actual answers as evidence. Feed from Q07, Q16, Q17, Q18, Q20.\n\n';
-  md += '2. **Brand Personality Profile**. Three parts: (a) Voice and Tone (how the brand speaks, what it never sounds like), (b) Character Sketch using the Don Jeter lens (does this brand have a villain, a world, a "SOAR is dead" moment?), (c) Tone and Energy (five to seven specific, earned descriptors from their answers). Feed from Q16, Q17, Q20, Q21 + voice uploads.\n\n';
-  md += '3. **Positioning**. April Dunford\'s 5-component framework: (a) Who this is for, (b) The promise (run through the "so what" test), (c) The voice, (d) Competitive alternatives (what would they do if you did not exist), (e) The gap the dominant player leaves. Feed from Q01, Q02, Q04, Q05, Q06, Q13, Q15, Q19.\n\n';
-  md += '4. **Visual Direction Brief**. Three parts: (a) Emotional target (the specific scene, not the feeling), (b) Should feel like (place metaphor answers as atmospheric direction), (c) Suggested metaphors (visual and verbal anchors). Feed from Q17, Q20, Q21.\n\n';
-  md += '5. **Taglines + Voice Lines**. Three to five directions, each a distinct strategic posture. Apply Roei Deutsch lens (speaks to believers not skeptics) and Don Jeter lens (stops the scroll). Each direction includes website hero line, belief line, kicker line, and one-sentence reasoning. Feed from Q07, Q13, Q15, Q18 + tagline uploads.\n\n';
-  md += '### Voice requirements (all outputs)\n\n';
-  md += '- Warm, editorial, direct. Say the quiet part out loud.\n';
-  md += '- No em dashes. Rewrite any sentence that needs one.\n';
-  md += '- No corporate jargon.\n';
-  md += '- Quote the founder\'s actual answers as evidence where possible.\n';
-  md += '- Directionally true, not finished. A starting point for the founder to react to.\n\n';
+
+  // ------------------------------------------------------------
+  // HOW TO USE
+  // ------------------------------------------------------------
+  md += '## How to use this pack\n\n';
+  md += '1. Open a fresh chat in Claude, ChatGPT, or any AI tool you trust for writing work. A fresh chat is important. You want a clean context window.\n';
+  md += '2. Copy the **Setup message** below (everything between the two horizontal lines) and send it as your first message. The assistant will confirm it has read your answers.\n';
+  md += '3. Paste **Prompt 1** next. Review the output. If it lands, say "approved" and move to Prompt 2. If it is close but off, use the **Refinement template** at the bottom of this document before moving on.\n';
+  md += '4. Work through Prompts 1 through 5 in order. They build on each other the way the API version does.\n';
+  md += '5. When all five are approved, you have your brand starting point. Copy the outputs into your working doc.\n\n';
+  md += '**A note on voice.** Every prompt in this pack enforces the same voice rules the API version uses: warm, editorial, direct, no em dashes, no corporate jargon, no FUD. If an assistant drifts, point it back at those rules.\n\n';
   md += '---\n\n';
-  md += '## The Founder\'s Answers\n\n';
+
+  // ------------------------------------------------------------
+  // SETUP MESSAGE
+  // ------------------------------------------------------------
+  md += '## Setup message · Paste this first\n\n';
+  md += 'Copy everything between the two horizontal lines below and send it as your first message. Wait for the assistant to confirm before moving on.\n\n';
+  md += '---\n\n';
+  md += 'You are acting as a brand strategist and thought partner for a cybersecurity founder. The founder is running brand discovery through Sow What, a tool built by Kelsey LaBelle. Below are the founder\'s answers to a series of questions across six sections, along with any context they uploaded.\n\n';
+  md += 'Read everything carefully. Do not summarize. Do not generate any output yet. I will send you five prompts in sequence, each asking for one brand output. You will respond to each one in turn.\n\n';
+  md += 'Voice rules that apply to every output you produce:\n\n';
+  md += '- Warm, editorial, direct. Write like a trusted advisor, not a branding agency.\n';
+  md += '- No em dashes anywhere. If a sentence needs one, rewrite it with a period, a comma, or two sentences.\n';
+  md += '- No corporate jargon, no fear-based framing, no clichés.\n';
+  md += '- Quote the founder\'s actual answers as evidence in quotation marks when it strengthens a point.\n';
+  md += '- Every output is directionally true, not finished. Your job is to give them something strong to react to.\n\n';
+  md += '### The founder\'s answers\n\n';
 
   SECTIONS.forEach(section => {
-    md += '### Section ' + section.number + ': ' + section.title + '\n\n';
+    md += '#### Section ' + section.number + ': ' + section.title + '\n\n';
     md += '_' + section.kicker + '_\n\n';
 
     if (section.upload && (state.uploads[section.id] || state.files[section.id])) {
-      md += '**Optional upload context (' + section.upload.title + ')**\n\n';
-      
+      md += '**Additional context (' + section.upload.title + ')**\n\n';
+
       if (state.uploads[section.id]) {
         md += state.uploads[section.id] + '\n\n';
       }
-      
+
       if (state.files[section.id]) {
         Object.entries(state.files[section.id]).forEach(([filename, content]) => {
-          md += '**File: ' + filename + '**\n\n';
+          md += '_File: ' + filename + '_\n\n';
           md += content + '\n\n';
         });
       }
     }
 
     section.questions.forEach(q => {
-      md += '**' + q.label + '**\n\n';
-      md += '_' + q.text + '_\n\n';
+      md += '**' + q.label + '** · _' + q.text + '_\n\n';
       md += (state.answers[q.id] || '_(no answer provided)_') + '\n\n';
     });
   });
 
+  md += 'Reply with a single short sentence confirming you have read the answers and are ready for the first prompt. Do not generate anything yet.\n\n';
   md += '---\n\n';
-  md += '_Generated via Sow What, built by Kelsey LaBelle · the gardener of cybersecurity marketing · kelseylabelle.com_\n';
+
+  // ------------------------------------------------------------
+  // THE FIVE PROMPTS
+  // ------------------------------------------------------------
+  const promptBlocks = [
+    {
+      number: '1',
+      title: 'Brand Archetype',
+      subtitle: 'The primary archetype that emerges from the answers. Named, not chosen.',
+      body: 'Using the founder\'s answers from the setup message, generate their Brand Archetype.\n\n' +
+        'Name their primary brand archetype from the standard 12 (Innocent, Sage, Explorer, Outlaw, Magician, Hero, Lover, Jester, Everyman, Caregiver, Ruler, Creator). If the answers split meaningfully between two, name a primary and a co-primary.\n\n' +
+        'Feed primarily from: Q07 (conviction under pressure), Q16 (high school student), Q17 (place metaphor), Q18 (why started / why stay), Q20 (brand encounter scene).\n\n' +
+        'Requirements:\n\n' +
+        '- Reveal the archetype. Do not ask the founder to choose.\n' +
+        '- One paragraph of explanation.\n' +
+        '- Quote their actual answers as evidence (brief quoted phrases in quotation marks).\n' +
+        '- Voice: warm, editorial, direct. Say the quiet part out loud. No corporate jargon. No em dashes.\n' +
+        '- Open with the archetype name in bold (**Archetype**) followed by the explanation.'
+    },
+    {
+      number: '2',
+      title: 'Brand Personality Profile',
+      subtitle: 'Voice, tone, character, and energy, with the specific language earned from the answers.',
+      body: 'Using the same founder\'s answers, generate their Brand Personality Profile.\n\n' +
+        'Feed primarily from: Q16 (high school student), Q17 (place metaphor), Q20 (brand encounter scene), Q21 (product moment), plus any voice-related uploads.\n\n' +
+        'Structure (three parts, use bold markdown headers):\n\n' +
+        '**Voice and Tone**\n' +
+        'How the brand speaks. What it never sounds like. Be specific. Quote their language where it earned the characterization.\n\n' +
+        '**Character Sketch (Don Jeter lens)**\n' +
+        'Does this brand have a villain, a world, a "SOAR is dead" moment? What is the brand\'s point of view that stops the scroll?\n\n' +
+        '**Tone and Energy**\n' +
+        'Five to seven specific, earned descriptors drawn from their answers. Not adjectives from a list. Descriptors that could only describe this company. Format as a tight list.\n\n' +
+        'Requirements:\n\n' +
+        '- Voice: warm, editorial, direct. No corporate jargon. No em dashes.\n' +
+        '- Quote their actual answers as evidence.'
+    },
+    {
+      number: '3',
+      title: 'Positioning',
+      subtitle: 'April Dunford\'s five-component framework, built from their actual beliefs and customers.',
+      body: 'Using the same founder\'s answers, generate their Positioning document. Apply April Dunford\'s five-component framework.\n\n' +
+        'Feed primarily from: Q01 (explicit vs implicit goals), Q02 (better or different), Q04 (wrong customers), Q05 (best customer), Q06 (who you are not for), Q13 (pattern you keep seeing), Q15 (what disappears), Q19 (cybersecurity mindshare reflex).\n\n' +
+        'Structure (five components, use bold markdown headers):\n\n' +
+        '**Who This Is For**\n' +
+        'The specific best-fit customer. Drawn from Q05 and Q06. Name them concretely.\n\n' +
+        '**The Promise**\n' +
+        'The value proposition, run through the "so what" test. Not a feature. The outcome.\n\n' +
+        '**The Voice**\n' +
+        'How this company sounds when it talks about what it does. One paragraph.\n\n' +
+        '**Competitive Alternatives**\n' +
+        'What would these customers do if this company did not exist? The status quo is the real competition. Name it specifically.\n\n' +
+        '**The Gap the Dominant Player Leaves**\n' +
+        'Based on Q19, where is the white space? What are the leaders leaving on the table?\n\n' +
+        'Requirements:\n\n' +
+        '- Voice: warm, editorial, direct. No em dashes. No corporate jargon.\n' +
+        '- Quote their answers where relevant.'
+    },
+    {
+      number: '4',
+      title: 'Visual Direction Brief',
+      subtitle: 'Emotional target, atmospheric direction, and metaphor anchors for visual work.',
+      body: 'Using the same founder\'s answers, generate their Visual Direction Brief.\n\n' +
+        'Feed primarily from: Q17 (place metaphor), Q20 (brand encounter scene), Q21 (product moment).\n\n' +
+        'Structure (three parts, use bold markdown headers):\n\n' +
+        '**Emotional Target**\n' +
+        'The specific scene, not the feeling. Quote from Q20 and Q21. The scene is the brief.\n\n' +
+        '**Should Feel Like**\n' +
+        'Use the place metaphor answers (Q17) as atmospheric direction. What the brand should feel like visually, and what it absolutely should not.\n\n' +
+        '**Suggested Metaphors**\n' +
+        'Visual and verbal anchors that emerge from their answers. Three to five. Each should be a concrete image, not an abstract concept.\n\n' +
+        'Requirements:\n\n' +
+        '- Voice: warm, editorial, direct. No em dashes. No corporate jargon.\n' +
+        '- Write for a designer. Specific enough to design toward.'
+    },
+    {
+      number: '5',
+      title: 'Taglines and Voice Lines',
+      subtitle: 'Three to five directions, each a distinct strategic posture, with reasoning.',
+      body: 'Using the same founder\'s answers, generate Taglines and Voice Lines.\n\n' +
+        'Feed primarily from: Q07 (conviction under pressure), Q13 (pattern you keep seeing), Q15 (what disappears), Q18 (why started / why stay), plus any existing tagline uploads.\n\n' +
+        'Generate three to five directions. Each is a DISTINCT STRATEGIC POSTURE. Not five variations of the same idea.\n\n' +
+        'Apply two lenses:\n\n' +
+        '- Roei Deutsch lens: speaks to believers, not skeptics.\n' +
+        '- Don Jeter lens: stops the scroll.\n\n' +
+        'Each direction includes:\n\n' +
+        '**Direction N: [Short name for the posture]**\n\n' +
+        '- Website hero line (the headline on the homepage)\n' +
+        '- Website belief line (the supporting conviction underneath)\n' +
+        '- Website kicker line (the final line before the CTA)\n' +
+        '- One-sentence reasoning: why this direction works, drawn from their answers\n\n' +
+        'Requirements:\n\n' +
+        '- Voice: warm, editorial, direct. No em dashes. No corporate jargon.\n' +
+        '- Every line should be something a real founder would say out loud.\n' +
+        '- Compression matters. Short is better than clever.'
+    }
+  ];
+
+  promptBlocks.forEach(p => {
+    md += '## Prompt ' + p.number + ' · ' + p.title + '\n\n';
+    md += '_' + p.subtitle + '_\n\n';
+    md += 'Copy everything between the two horizontal lines below and send it as your next message. Review the response before moving on.\n\n';
+    md += '---\n\n';
+    md += p.body + '\n\n';
+    md += '---\n\n';
+  });
+
+  // ------------------------------------------------------------
+  // REFINEMENT TEMPLATE
+  // ------------------------------------------------------------
+  md += '## Refinement template\n\n';
+  md += 'If an output is close but not quite right, use this to ask for a second pass before moving to the next prompt. The API version caps refinement at two rounds per output, which is a good discipline to borrow here.\n\n';
+  md += '---\n\n';
+  md += 'That output is close, but regenerate it with this feedback fully integrated:\n\n';
+  md += '[Your feedback goes here. Be specific. Point to what to keep, what to cut, and what to push further. Quote lines from the output if it helps.]\n\n';
+  md += 'Do not apologize or acknowledge the feedback in the output itself. Just give me the improved version.\n\n';
+  md += '---\n\n';
+
+  // ------------------------------------------------------------
+  // FOOTER
+  // ------------------------------------------------------------
+  md += '_Generated via Sow What, a brand discovery tool for cybersecurity founders. Built by Kelsey LaBelle. kelseylabelle.com_\n';
 
   return md;
 }
